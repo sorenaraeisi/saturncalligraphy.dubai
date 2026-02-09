@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saturn Calligraphy — Private Collection</title>
+
+    <!-- Luxury Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #0A0612; 
+            --bg-card: #150A20; 
+            --border: #3A2750;
+            --accent: #C5A572; 
+            --accent-soft: #E8D7B9;
+            --text-main: #F3F0F7;
+            --text-secondary: #C8C3D4;
+            --text-muted: #9A94A8;
+            --transition: 0.35s ease;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text-main);
+            font-family: "Inter", sans-serif;
+            letter-spacing: 0.3px;
+            opacity: 0;
+            animation: fadeIn 1.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        nav {
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10, 6, 18, 0.7);
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            width: 88%;
+            max-width: 1300px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 1.9em;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 4px;
+            margin-right: auto;
+            animation: logoFloat 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoFloat {
+            0% { transform: translateZ(0); }
+            100% { transform: translateZ(18px) rotateX(6deg) rotateY(-4deg); }
+        }
+
+        nav a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.05em;
+            font-weight: 300;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-soft);
+        }
+
+        header {
+            text-align: center;
+            padding: 110px 0 70px;
+            opacity: 0;
+            transform: translateY(25px);
+            animation: headerIn 1.6s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes headerIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-title {
+            font-family: "Playfair Display", serif;
+            font-size: 4em;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .tagline {
+            font-size: 1.25em;
+            color: var(--text-muted);
+        }
+
+        .gallery {
+            width: 88%;
+            max-width: 1300px;
+            margin: 40px auto 120px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 55px;
+        }
+
+        .art-card {
+            background: var(--bg-card);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: cardIn 1.2s ease forwards;
+        }
+
+        @keyframes cardIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .art-card:hover {
+            transform: translateY(-14px) scale(1.02);
+            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.75);
+            border-color: var(--accent);
+        }
+
+        .art-image {
+            height: 420px;
+            overflow: hidden;
+        }
+
+        .art-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .art-card:hover img {
+            transform: scale(1.08);
+            filter: brightness(1.08);
+        }
+
+        /* TEXT UNDER IMAGES */
+        .under-text {
+            text-align: center;
+            margin: 18px 0 28px;
+            padding: 0 20px;
+            color: var(--text-secondary);
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .under-text a {
+            display: block;
+            margin-top: 8px;
+            font-size: 1.05em;
+            background: linear-gradient(45deg, #C5A572, #E8D7B9);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .under-text a:hover {
+            opacity: 0.7;
+        }
+
+        /* CONTACT ICONS */
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin: 90px 0 10px;
+            opacity: 0;
+            animation: contactIn 1.4s ease forwards;
+        }
+
+        @keyframes contactIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon {
+            font-size: 54px;
+            background: linear-gradient(45deg, #C5A572, #E8D7B9);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: floatIcon 4s ease-in-out infinite;
+            transition: var(--transition);
+        }
+
+        @keyframes floatIcon {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .icon:hover {
+            transform: scale(1.2);
+        }
+
+        .thanks-text {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 1.1em;
+            color: var(--text-muted);
+            opacity: 0;
+            animation: fadeUp 1.6s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">SATURN</div>
+            <a href="index.html">Home</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1 class="brand-title">Saturn Calligraphy</h1>
+        <p class="tagline">Private Collection — Handcrafted Cosmic Art</p>
+    </header>
+
+    <div class="gallery">
+
+        <div class="art-card">
+            <div class="art-image"><img src="IMG_2120.jpeg"></div>
+            <p class="under-text">
+                Handcrafted cosmic balance in deep violet tones.
+                <a href="https://wa.me/971506129130" target="_blank">Contact for order</a>
+            </p>
+        </div>
+
+        <div class="art-card">
+            <div class="art-image"><img src="IMG_2121.jpeg"></div>
+            <p class="under-text">
+                A study of elegant strokes and silent movement.
+                <a href="https://wa.me/971506129130" target="_blank">Contact for order</a>
+            </p>
+        </div>
+
+        <div class="art-card">
+            <div class="art-image"><img src="IMG_2122.jpeg"></div>
+            <p class="under-text">
+                Minimal calligraphy with refined golden contrast.
+                <a href="https://wa.me/971506129130" target="_blank">Contact for order</a>
+            </p>
+        </div>
+
+        <div class="art-card">
+            <div class="art-image"><img src="IMG_2123.jpeg"></div>
+            <p class="under-text">
+                A composition shaped through slow, intentional lines.
+                <a href="https://wa.me/971506129130" target="_blank">Contact for order</a>
+            </p>
+        </div>
+
+        <div class="art-card">
+            <div class="art-image"><img src="IMG_2124.jpeg"></div>
+            <p class="under-text">
+                Modern calligraphy designed for serene interiors.
+                <a href="https://wa.me/971506129130" target="_blank">Contact for order</a>
+            </p>
+        </div>
+
+        <div class="art-card">
+            <div class="art-image"><img src="IMG_2125.jpeg"></div>
+            <p class="under-text">
+                Golden harmony captured in a quiet visual form.
+                <a href="https://wa.me/971506129130" target="_blank">Contact for order</a>
+            </p>
+        </div>
+
+        <div class="art-card">
+            <div class="art-image"><img src="IMG_2112.jpeg"></div>
+            <p class="under-text">
+                Collector’s edition — crafted with depth and intention.
+                <a href="https://wa.me/971506129130" target="_blank">Contact for order</a>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="contact-row">
+
+        <a href="https://wa.me/971506129130" class="icon">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+
+        <a href="https://www.instagram.com/saturn_caligraphy" class="icon">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="contact.html" class="icon">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+
+    </div>
+
+    <p class="thanks-text">Thank you for your trust</p>
+
+    <footer>
+        <p>&copy; 2025 Saturn Calligraphy — Private Collection</p>
+    </footer>
+
+</body>
+</html>
